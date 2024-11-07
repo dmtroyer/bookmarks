@@ -5,7 +5,7 @@ import { successResponse, errorResponse } from '@/utils/apiResponse';
 export async function GET() {
   try {
     await dbConnect();
-    const bookmarks = await Bookmark.find({});
+    const bookmarks = await Bookmark.find({}).lean();
     return successResponse(bookmarks, 'Bookmarks retrieved successfully');
   } catch (error) {
     return errorResponse('Failed to fetch bookmarks', error.message);
@@ -18,7 +18,7 @@ export async function POST(request) {
     const data = await request.json();
     const newBookmark = new Bookmark(data);
     await newBookmark.save();
-    return successResponse(newBookmark, 'Bookmark created successfully', 201);
+    return successResponse(newBookmark.lean(), 'Bookmark created successfully', 201);
   } catch (error) {
     return errorResponse('Failed to create bookmark', error.message);
   }
