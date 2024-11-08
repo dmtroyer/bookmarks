@@ -1,10 +1,11 @@
 import React from 'react';
+import Tag from '@/app/components/tag';
 import { PencilSquareIcon } from '@heroicons/react/24/outline';
 
 export default function Card({ bookmark }) {
   return (
     <div id={`card-${bookmark.id}`} className="p-4 max-w-sm min-w-[250px]">
-      <div className="flex rounded-lg h-full dark:bg-gray-800 bg-teal-400 flex-col">
+      <div className="flex rounded-lg h-full bg-gray-950 flex-col border border-slate-800">
 
         {/* Title*/}
         <div className="p-4 flex items-center justify-between">
@@ -38,18 +39,11 @@ export default function Card({ bookmark }) {
           </a>
         )}
 
-        {/* Tags */}
-        <div className="p-4 flex flex-wrap gap-2 mt-auto">
-          {bookmark.tags?.map((tag) => (
-            <a
-              key={tag}
-              href={`/tags/${tag}`}
-              className="bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-300 px-2 py-1 rounded-md text-sm hover:underline"
-            >
-              {tag}
-            </a>
-          ))}
-        </div>
+        {bookmark.tags?.length > 0 && (
+          <div className="p-4 flex flex-wrap gap-2 mt-auto">
+            {bookmark.tags.map((tag) => <Tag key={tag} name={tag} />)}
+          </div>
+        )}
       </div>
     </div>
   );

@@ -3,7 +3,14 @@ import mongoose from "mongoose";
 const BookmarkSchema = new mongoose.Schema({
   name: String,
   imageUrl: String,
-  tags: [String],
+  metadata: {
+    type: Map,
+    of: mongoose.Schema.Types.Mixed,
+  },
+  tags: {
+    type: [String],
+    index: true
+  },
   url: String,
 }, {
   timestamps: true
