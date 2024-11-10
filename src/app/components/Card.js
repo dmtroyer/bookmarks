@@ -1,5 +1,5 @@
 import React from 'react';
-import Tag from '@/app/components/tag';
+import Tag from '@/app/components/Tag';
 import { PencilSquareIcon } from '@heroicons/react/24/outline';
 
 export default function Card({ bookmark }) {
